@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -8,8 +10,8 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.yamnet_classification_project"
-        minSdkVersion 21
+        applicationId "com.soloupis.yamnet_classification_project"
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -22,6 +24,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    buildFeatures{
+        dataBinding = true
+        // for view binding :
+        // viewBinding = true
+    }
+    aaptOptions {
+        noCompress "tflite"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

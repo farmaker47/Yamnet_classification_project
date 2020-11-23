@@ -1,4 +1,4 @@
-package com.example.yamnet_classification_project
+package com.soloupis.yamnet_classification_project
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
