@@ -9,4 +9,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="allPermissionsGranted">All permissions are granted!</string>
+    <string name="permissionsNotGranted">All permissions are mandatory for app to work properly!</string>
 </resources>
