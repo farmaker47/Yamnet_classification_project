@@ -505,7 +505,7 @@ class ListeningRecorder(
             try {
                 stream = FileOutputStream(
                     Environment.getExternalStorageDirectory().toString() +
-                            "/Pitch Estimator/soloupis.wav", false
+                            "/Yamnet classification/soloupis.wav", false
                 )
             } catch (e: FileNotFoundException) {
                 e.printStackTrace()

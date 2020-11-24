@@ -18,18 +18,20 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Environment
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import androidx.lifecycle.Observer
 import android.view.ViewGroup
-import android.widget.Button
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.navigation.fragment.findNavController
 import com.soloupis.yamnet_classification_project.R
 import com.soloupis.yamnet_classification_project.databinding.FragmentSecondBinding
 import com.soloupis.yamnet_classification_project.viewmodel.ListeningFragmentViewmodel
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.io.File
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -37,7 +39,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class ListeningFragment : Fragment() {
 
     private lateinit var binding:FragmentSecondBinding
-    private val viewmodel:ListeningFragmentViewmodel by viewModel()
+    private val viewModel:ListeningFragmentViewmodel by viewModel()
 
     // Permissions
     var PERMISSION_ALL = 123
@@ -56,12 +58,66 @@ class ListeningFragment : Fragment() {
         binding = FragmentSecondBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        initialize()
+        lookForPermissions()
+        generateFolderToSDcard()
+        setUpObservers()
 
+        binding.buttonForListening.setOnClickListener {
+
+            if (viewModel.listeningRunning) {
+                listeningStopped()
+            } else {
+                // Start animation
+                animateListeningButton()
+                // Start collecting sound and inferring immediately
+                viewModel.setUpdateLoopListeningHandler()
+
+                //Toast.makeText(activity, "Listening has started", Toast.LENGTH_LONG).show()
+
+            }
+        }
 
 
 
         return binding.root
+    }
+
+    private fun setUpObservers() {
+        viewModel.listeningEnd.observe(
+            requireActivity(),
+            Observer { end ->
+                if (end) {
+                    // Clear animation
+                    binding.buttonAnimated.clearAnimation()
+                } else {
+                    // Start animation
+                    animateListeningButton()
+                }
+            }
+        )
+    }
+
+    fun listeningStopped() {
+        // Execute method to stop callbacks
+        viewModel.stopAllListening()
+
+        // Clear animation
+        binding.buttonAnimated.clearAnimation()
+
+        //Toast.makeText(activity, "Listening has stopped", Toast.LENGTH_LONG).show()
+    }
+
+    private fun animateListeningButton() {
+        val animation = AnimationUtils.loadAnimation(activity, R.anim.scale_anim)
+        binding.buttonAnimated.startAnimation(animation)
+    }
+
+    private fun generateFolderToSDcard() {
+        val root =
+            File(Environment.getExternalStorageDirectory(), "Yamnet classification")
+        if (!root.exists()) {
+            root.mkdirs()
+        }
     }
 
     private fun hasPermissions(
@@ -82,7 +138,7 @@ class ListeningFragment : Fragment() {
         return true
     }
 
-    private fun initialize() {
+    private fun lookForPermissions() {
         if (!hasPermissions(activity, *PERMISSIONS)) {
             requestPermissions(PERMISSIONS, PERMISSION_ALL)
         }
@@ -127,5 +183,13 @@ class ListeningFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+    }
+
+    companion object {
+        private const val TIME_DELAY = 555L
+
+        // Update interval for widget
+        const val UPDATE_INTERVAL_INFERENCE = 2048L
+        const val UPDATE_INTERVAL_KARAOKE = 440L
     }
 }
