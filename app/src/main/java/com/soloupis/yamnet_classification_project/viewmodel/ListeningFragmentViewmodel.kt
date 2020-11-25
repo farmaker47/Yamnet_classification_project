@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.soloupis.yamnet_classification_project.ml_executor.YamnetModelExecutor
 import com.soloupis.yamnet_classification_project.recorder.ListeningRecorder
 import com.soloupis.yamnet_classification_project.view.ListeningFragment
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +22,7 @@ class ListeningFragmentViewmodel(application: Application) : AndroidViewModel(ap
     KoinComponent {
 
     private var listeningRecorderObject: ListeningRecorder
+    private var yamnetModelExecutor:YamnetModelExecutor
     var listeningRunning = false
     private var context: Context = application
 
@@ -40,6 +42,7 @@ class ListeningFragmentViewmodel(application: Application) : AndroidViewModel(ap
     init {
         // DI
         listeningRecorderObject = get()
+        yamnetModelExecutor = get()
 
     }
 

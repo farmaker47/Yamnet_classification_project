@@ -1,5 +1,6 @@
 package com.soloupis.yamnet_classification_project.di
 
+import com.soloupis.yamnet_classification_project.ml_executor.YamnetModelExecutor
 import com.soloupis.yamnet_classification_project.recorder.ListeningRecorder
 import com.soloupis.yamnet_classification_project.viewmodel.ListeningFragmentViewmodel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -11,7 +12,7 @@ val listeningFragmentModule = module {
 
     // Use factory instead of single when user presses back button...
     // to force execution of init block when interpreter is closed
-    //factory { PitchModelExecutor(get(), getKoin().getProperty("koinUseGpu")!!) }
+    factory { YamnetModelExecutor(get(), false) }
 
     viewModel {
         ListeningFragmentViewmodel(get())
