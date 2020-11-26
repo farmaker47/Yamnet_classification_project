@@ -39,6 +39,10 @@ class ListeningFragmentViewmodel(application: Application) : AndroidViewModel(ap
     val listeningEnd: LiveData<Boolean>
         get() = _listeningEnd
 
+    private val _listOfclasses = MutableLiveData<ArrayList<String>>()
+    val listOfClasses: LiveData<ArrayList<String>>
+        get() = _listOfclasses
+
     init {
         // DI
         listeningRecorderObject = get()
@@ -86,17 +90,13 @@ class ListeningFragmentViewmodel(application: Application) : AndroidViewModel(ap
             floatsForInference[index] = (value / 32768F)
         }
 
-        Log.i("FLOATS", floatsForInference.takeLast(100).toString())
+        Log.i("YAMNET_FLOATS", floatsForInference.takeLast(100).toString())
 
         // Inference
         _inferenceDone.postValue(false)
 
+        _listOfclasses.postValue(yamnetModelExecutor.execute(floatsForInference))
 
-        //_noteValuesToDisplay.postValue(pitchModelExecutorObject.execute(floatsForInference))
-
-
-
-        //Log.i("HERTZ", hertzValuesToDisplay.toString())
         _inferenceDone.postValue(true)
 
     }
@@ -154,6 +154,7 @@ class ListeningFragmentViewmodel(application: Application) : AndroidViewModel(ap
 
         // Below stopAllListening to execute when back button is used
         stopAllListening()
+        yamnetModelExecutor.close()
 
     }
 }

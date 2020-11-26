@@ -13,7 +13,10 @@ class YamnetModelExecutor(
     context: Context,
     useGPU: Boolean
 ) {
-    private var numberThreads = 4
+
+    // Use of 2 threads after benchmarking the model
+    // Also no GPU usage because it does not support the model
+    private var numberThreads = 2
     private var interpreter: Interpreter
     private var predictTime = 0L
 
@@ -31,22 +34,22 @@ class YamnetModelExecutor(
 
         predictTime = System.currentTimeMillis()
         val inputSize = floatsInput.size // ~2 seconds of sound
-        var outputSize = 0
-        when (inputSize) {
-            // 16.000 * 2 seconds recording
-            32000 -> outputSize = ceil(inputSize / 512.0).toInt()
-            else -> outputSize = (ceil(inputSize / 512.0) + 1).toInt()
-        }
+        Log.i("YAMNET_INPUT_SIZE", inputSize.toString())
+
         val inputValues = floatsInput//FloatArray(inputSize)
 
         val inputs = arrayOf<Any>(inputValues)
         val outputs = HashMap<Int, Any>()
 
-        val pitches = FloatArray(outputSize)
-        val uncertainties = FloatArray(outputSize)
+        // Outputs of yamnet model with tflite and for 2 seconds .wav file
+        // scores(4, 521) emmbedings(4, 1024) spectogram(240, 64)
+        val arrayScores = Array(4) { FloatArray(521) { 0f } }
+        val arrayEmbeddings = Array(4) {FloatArray(1024) {0f} }
+        val arraySpectograms = Array(240){FloatArray(64) {0f} }
 
-        outputs[0] = pitches
-        outputs[1] = uncertainties
+        outputs[0] = arrayScores
+        outputs[1] = arrayEmbeddings
+        outputs[2] = arraySpectograms
 
         try {
             interpreter.runForMultipleInputsOutputs(inputs, outputs)
@@ -54,10 +57,12 @@ class YamnetModelExecutor(
             Log.e("EXCEPTION", e.toString())
         }
 
-        Log.i("PITCHES", pitches.contentToString())
-        Log.i("PITCHES_SIZE", pitches.size.toString())
-        Log.i("UNCERTAIN", uncertainties.contentToString())
-        Log.i("UNCERTAIN_SIZE", uncertainties.size.toString())
+        Log.i("YAMNET_SCORES", arrayScores[0].contentToString())
+        Log.i("YAMNET_SCORES_SIZE", arrayScores.size.toString())
+        Log.i("YAMNET_EMBEDDINGS", arrayEmbeddings[0].contentToString())
+        Log.i("YAMNET_EMBEDDINGS_SIZE", arrayEmbeddings.size.toString())
+
+        Log.i("YAMNET_PREDICT_TIME", (System.currentTimeMillis() - predictTime).toString())
 
         return arrayListOf() // ArrayList<String>
     }
