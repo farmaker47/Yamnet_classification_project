@@ -19,6 +19,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -38,11 +39,14 @@ import java.io.File
  */
 class ListeningFragment : Fragment() {
 
-    private lateinit var binding:FragmentSecondBinding
-    private val viewModel:ListeningFragmentViewmodel by viewModel()
+    private lateinit var binding: FragmentSecondBinding
+    private val viewModel: ListeningFragmentViewmodel by viewModel()
+    private lateinit var listOfPredictedClasses:ArrayList<String>
+    private lateinit var listOfFloatsOfPredictedClasses:ArrayList<Float>
 
     // Permissions
     var PERMISSION_ALL = 123
+
     // App saves .wav audio file inside external storage of phone so anyone can compare
     // results with the colab notebook output. For that purpose this permission is mandatory
     var PERMISSIONS = arrayOf(
@@ -51,8 +55,8 @@ class ListeningFragment : Fragment() {
     )
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSecondBinding.inflate(inflater)
@@ -93,6 +97,17 @@ class ListeningFragment : Fragment() {
                     // Start animation
                     animateListeningButton()
                 }
+            }
+        )
+
+        viewModel.listOfClasses.observe(
+            requireActivity(),
+            Observer { pair ->
+                val (stringList, floatList) = pair
+                listOfPredictedClasses = stringList
+                listOfFloatsOfPredictedClasses = floatList
+                Log.i("YAMNET_FINAL", listOfPredictedClasses.toString())
+                Log.i("YAMNET_10", listOfFloatsOfPredictedClasses.toString())
             }
         )
     }

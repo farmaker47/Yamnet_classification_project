@@ -39,8 +39,8 @@ class ListeningFragmentViewmodel(application: Application) : AndroidViewModel(ap
     val listeningEnd: LiveData<Boolean>
         get() = _listeningEnd
 
-    private val _listOfclasses = MutableLiveData<ArrayList<String>>()
-    val listOfClasses: LiveData<ArrayList<String>>
+    private val _listOfclasses = MutableLiveData<Pair<ArrayList<String>, ArrayList<Float>>>()
+    val listOfClasses: LiveData<Pair<ArrayList<String>, ArrayList<Float>>>
         get() = _listOfclasses
 
     init {

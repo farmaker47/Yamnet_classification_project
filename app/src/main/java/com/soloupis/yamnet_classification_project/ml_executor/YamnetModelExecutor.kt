@@ -1,13 +1,14 @@
 package com.soloupis.yamnet_classification_project.ml_executor
 
 import android.content.Context
+import android.os.FileUtils
 import android.util.Log
 import org.tensorflow.lite.Interpreter
+import org.tensorflow.lite.support.common.FileUtil
 import java.io.FileInputStream
 import java.io.IOException
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
-import kotlin.math.*
 
 class YamnetModelExecutor(
     context: Context,
@@ -19,10 +20,14 @@ class YamnetModelExecutor(
     private var numberThreads = 2
     private var interpreter: Interpreter
     private var predictTime = 0L
+    private lateinit var labels: List<String>
+
 
     init {
 
         interpreter = getInterpreter(context, YAMNET_MODEL, false)
+
+        labels = FileUtil.loadLabels(context, "classes.txt")
 
     }
 
@@ -30,11 +35,11 @@ class YamnetModelExecutor(
         private const val YAMNET_MODEL = "model_yamnet_tflite.tflite"
     }
 
-    fun execute(floatsInput: FloatArray): ArrayList<String> {
+    fun execute(floatsInput: FloatArray): Pair<ArrayList<String>, ArrayList<Float>> {
 
         predictTime = System.currentTimeMillis()
         val inputSize = floatsInput.size // ~2 seconds of sound
-        Log.i("YAMNET_INPUT_SIZE", inputSize.toString())
+        //Log.i("YAMNET_INPUT_SIZE", inputSize.toString())
 
         val inputValues = floatsInput//FloatArray(inputSize)
 
@@ -77,10 +82,10 @@ class YamnetModelExecutor(
             listOfArrayMeanScores.remove(number)
         }
 
-        var listOfMaxIndices = arrayListOf<Int>()
-        for (i in 0 until 10){
-            for (k in arrayMeanScores.indices){
-                if (listOfMaximumValues[i] == arrayMeanScores[k]){
+        val listOfMaxIndices = arrayListOf<Int>()
+        for (i in 0 until 10) {
+            for (k in arrayMeanScores.indices) {
+                if (listOfMaximumValues[i] == arrayMeanScores[k]) {
                     listOfMaxIndices.add(k)
                 }
             }
@@ -89,14 +94,16 @@ class YamnetModelExecutor(
 
         Log.i("YAMNET_SCORES", arrayMeanScores.contentToString())
         Log.i("YAMNET_SCORES_SIZE", arrayMeanScores.size.toString())
-        Log.i("YAMNET_10", listOfMaximumValues.toString())
         Log.i("YAMNET_INDICES", listOfMaxIndices.toString())
-        //Log.i("YAMNET_EMBEDDINGS", arrayEmbeddings[0].contentToString())
+        //Log.i("YAMNET_LABELS", labels.toString())
         //Log.i("YAMNET_EMBEDDINGS_SIZE", arrayEmbeddings.size.toString())
 
-        Log.i("YAMNET_PREDICT_TIME", (System.currentTimeMillis() - predictTime).toString())
+        val finalListOfOutputs = arrayListOf<String>()
+        for (i in listOfMaxIndices.indices) {
+            finalListOfOutputs.add(labels.get(listOfMaxIndices.get(i)))
+        }
 
-        return arrayListOf() // ArrayList<String>
+        return Pair(finalListOfOutputs, listOfMaximumValues) // ArrayList<String>
     }
 
     // load tflite file from assets folder
