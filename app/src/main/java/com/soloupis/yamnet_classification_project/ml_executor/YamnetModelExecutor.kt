@@ -44,8 +44,8 @@ class YamnetModelExecutor(
         // Outputs of yamnet model with tflite and for 2 seconds .wav file
         // scores(4, 521) emmbedings(4, 1024) spectogram(240, 64)
         val arrayScores = Array(4) { FloatArray(521) { 0f } }
-        val arrayEmbeddings = Array(4) {FloatArray(1024) {0f} }
-        val arraySpectograms = Array(240){FloatArray(64) {0f} }
+        val arrayEmbeddings = Array(4) { FloatArray(1024) { 0f } }
+        val arraySpectograms = Array(240) { FloatArray(64) { 0f } }
 
         outputs[0] = arrayScores
         outputs[1] = arrayEmbeddings
@@ -57,10 +57,21 @@ class YamnetModelExecutor(
             Log.e("EXCEPTION", e.toString())
         }
 
-        Log.i("YAMNET_SCORES", arrayScores[0].contentToString())
-        Log.i("YAMNET_SCORES_SIZE", arrayScores.size.toString())
-        Log.i("YAMNET_EMBEDDINGS", arrayEmbeddings[0].contentToString())
-        Log.i("YAMNET_EMBEDDINGS_SIZE", arrayEmbeddings.size.toString())
+        val arrayMeanScores = FloatArray(521) { 0f }
+        for (i in 0 until 521) {
+            // Find the average of the 4 arrays at axis = 0
+            arrayMeanScores[i] = listOf(
+                arrayScores[0][i],
+                arrayScores[1][i],
+                arrayScores[2][i],
+                arrayScores[3][i]
+            ).average().toFloat()
+        }
+
+        Log.i("YAMNET_SCORES", arrayMeanScores.contentToString())
+        Log.i("YAMNET_SCORES_SIZE", arrayMeanScores.size.toString())
+        //Log.i("YAMNET_EMBEDDINGS", arrayEmbeddings[0].contentToString())
+        //Log.i("YAMNET_EMBEDDINGS_SIZE", arrayEmbeddings.size.toString())
 
         Log.i("YAMNET_PREDICT_TIME", (System.currentTimeMillis() - predictTime).toString())
 
