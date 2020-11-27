@@ -60,7 +60,7 @@ class YamnetModelExecutor(
         val arrayMeanScores = FloatArray(521) { 0f }
         for (i in 0 until 521) {
             // Find the average of the 4 arrays at axis = 0
-            arrayMeanScores[i] = listOf(
+            arrayMeanScores[i] = arrayListOf(
                 arrayScores[0][i],
                 arrayScores[1][i],
                 arrayScores[2][i],
@@ -68,8 +68,29 @@ class YamnetModelExecutor(
             ).average().toFloat()
         }
 
+        val listOfArrayMeanScores = arrayMeanScores.toCollection(ArrayList())
+
+        var listOfMaximumValues = arrayListOf<Float>()
+        for (i in 0 until 10) {
+            val number = listOfArrayMeanScores.max() ?: 0f
+            listOfMaximumValues.add(number)
+            listOfArrayMeanScores.remove(number)
+        }
+
+        var listOfMaxIndices = arrayListOf<Int>()
+        for (i in 0 until 10){
+            for (k in arrayMeanScores.indices){
+                if (listOfMaximumValues[i] == arrayMeanScores[k]){
+                    listOfMaxIndices.add(k)
+                }
+            }
+
+        }
+
         Log.i("YAMNET_SCORES", arrayMeanScores.contentToString())
         Log.i("YAMNET_SCORES_SIZE", arrayMeanScores.size.toString())
+        Log.i("YAMNET_10", listOfMaximumValues.toString())
+        Log.i("YAMNET_INDICES", listOfMaxIndices.toString())
         //Log.i("YAMNET_EMBEDDINGS", arrayEmbeddings[0].contentToString())
         //Log.i("YAMNET_EMBEDDINGS_SIZE", arrayEmbeddings.size.toString())
 
