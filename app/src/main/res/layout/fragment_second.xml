@@ -5,61 +5,88 @@
 
     <data>
 
+        <variable
+            name="viewModelListening"
+            type="com.soloupis.yamnet_classification_project.viewmodel.ListeningFragmentViewmodel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ffffff"
         tools:context=".view.ListeningFragment">
 
         <TextView
-            android:id="@+id/textview_second"
+            android:id="@+id/textviewClasses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/button_second"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            android:text="Class"
+            android:layout_marginStart="24dp"
+            android:textSize="28sp"
+            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button_second"
+        <TextView
+            android:id="@+id/textviewProbs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/previous"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="50dp"
+            android:text="0%"
+            android:layout_marginEnd="24dp"
+            android:textSize="18sp"
+            android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SeekBar
+            android:id="@+id/seek_bar_probs"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_gravity="center_vertical"
+            android:max="100"
+            android:thumbTint="@android:color/transparent"
+            android:progressDrawable="@drawable/progress_drawable"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_second" />
+            app:layout_constraintTop_toBottomOf="@id/textviewClasses" />
+
 
         <ImageButton
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginBottom="60dp"
             android:background="@drawable/round_button"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_second" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
             android:id="@+id/buttonAnimated"
             android:layout_width="65dp"
             android:layout_height="70dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="72dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:foreground="@drawable/ic_microphone"
             android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_second" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
             android:id="@+id/buttonForListening"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginBottom="60dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_second" />
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

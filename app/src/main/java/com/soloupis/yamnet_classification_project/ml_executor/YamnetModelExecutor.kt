@@ -75,7 +75,7 @@ class YamnetModelExecutor(
 
         val listOfArrayMeanScores = arrayMeanScores.toCollection(ArrayList())
 
-        var listOfMaximumValues = arrayListOf<Float>()
+        val listOfMaximumValues = arrayListOf<Float>()
         for (i in 0 until 10) {
             val number = listOfArrayMeanScores.max() ?: 0f
             listOfMaximumValues.add(number)

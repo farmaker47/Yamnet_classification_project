@@ -33,6 +33,7 @@ import com.soloupis.yamnet_classification_project.databinding.FragmentSecondBind
 import com.soloupis.yamnet_classification_project.viewmodel.ListeningFragmentViewmodel
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.io.File
+import kotlin.math.roundToInt
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -41,8 +42,8 @@ class ListeningFragment : Fragment() {
 
     private lateinit var binding: FragmentSecondBinding
     private val viewModel: ListeningFragmentViewmodel by viewModel()
-    private lateinit var listOfPredictedClasses:ArrayList<String>
-    private lateinit var listOfFloatsOfPredictedClasses:ArrayList<Float>
+    private lateinit var listOfPredictedClasses: ArrayList<String>
+    private lateinit var listOfFloatsOfPredictedClasses: ArrayList<Float>
 
     // Permissions
     var PERMISSION_ALL = 123
@@ -61,6 +62,7 @@ class ListeningFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSecondBinding.inflate(inflater)
         binding.lifecycleOwner = this
+        binding.viewModelListening = viewModel
 
         lookForPermissions()
         generateFolderToSDcard()
@@ -80,6 +82,9 @@ class ListeningFragment : Fragment() {
 
             }
         }
+
+        // Set first vlue to 1
+        binding.seekBarProbs.progress = 1
 
 
 
@@ -108,6 +113,12 @@ class ListeningFragment : Fragment() {
                 listOfFloatsOfPredictedClasses = floatList
                 Log.i("YAMNET_FINAL", listOfPredictedClasses.toString())
                 Log.i("YAMNET_10", listOfFloatsOfPredictedClasses.toString())
+
+                // Show results on screen
+                binding.seekBarProbs.progress =
+                    (listOfFloatsOfPredictedClasses[0] * 100).roundToInt()
+                binding.textviewProbs.text = "${(listOfFloatsOfPredictedClasses[0] * 100).roundToInt()}" + "%"
+                binding.textviewClasses.text = listOfPredictedClasses[0]
             }
         )
     }

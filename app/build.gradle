@@ -68,7 +68,7 @@ dependencies {
     // TF-Lite
     implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
 
-    // TF-Lite Support
+    // TF-Lite Support for text labels to arraylist
     implementation('org.tensorflow:tensorflow-lite-support:0.0.0-nightly')
 
 }
