@@ -84,7 +84,11 @@ class ListeningFragment : Fragment() {
         }
 
         // Set first vlue to 1
-        binding.seekBarProbs.progress = 1
+        binding.seekBarProbs1.progress = 1
+        binding.seekBarProbs2.progress = 1
+        binding.seekBarProbs3.progress = 1
+        binding.seekBarProbs4.progress = 1
+        binding.seekBarProbs5.progress = 1
 
 
 
@@ -115,10 +119,59 @@ class ListeningFragment : Fragment() {
                 Log.i("YAMNET_10", listOfFloatsOfPredictedClasses.toString())
 
                 // Show results on screen
-                binding.seekBarProbs.progress =
-                    (listOfFloatsOfPredictedClasses[0] * 100).roundToInt()
-                binding.textviewProbs.text = "${(listOfFloatsOfPredictedClasses[0] * 100).roundToInt()}" + "%"
-                binding.textviewClasses.text = listOfPredictedClasses[0]
+                if ((listOfFloatsOfPredictedClasses[0] * 100).roundToInt() == 0) {
+                    binding.seekBarProbs1.progress = 1
+                }else{
+                    binding.seekBarProbs1.progress =
+                        (listOfFloatsOfPredictedClasses[0] * 100).roundToInt()
+                }
+                binding.textviewProb1.text =
+                    "${(listOfFloatsOfPredictedClasses[0] * 100).roundToInt()}" + "%"
+                binding.textviewClasses1.text = listOfPredictedClasses[0]
+
+
+                if ((listOfFloatsOfPredictedClasses[1] * 100).roundToInt() == 0) {
+                    binding.seekBarProbs2.progress = 1
+                }else{
+                    binding.seekBarProbs2.progress =
+                        (listOfFloatsOfPredictedClasses[1] * 100).roundToInt()
+                }
+                binding.textviewProb2.text =
+                    "${(listOfFloatsOfPredictedClasses[1] * 100).roundToInt()}" + "%"
+                binding.textviewClasses2.text = listOfPredictedClasses[1]
+
+
+                if ((listOfFloatsOfPredictedClasses[2] * 100).roundToInt() == 0) {
+                    binding.seekBarProbs3.progress = 1
+                }else{
+                    binding.seekBarProbs3.progress =
+                        (listOfFloatsOfPredictedClasses[2] * 100).roundToInt()
+                }
+                binding.textviewProb3.text =
+                    "${(listOfFloatsOfPredictedClasses[2] * 100).roundToInt()}" + "%"
+                binding.textviewClasses3.text = listOfPredictedClasses[2]
+
+
+                if ((listOfFloatsOfPredictedClasses[3] * 100).roundToInt() == 0) {
+                    binding.seekBarProbs4.progress = 1
+                }else{
+                    binding.seekBarProbs4.progress =
+                        (listOfFloatsOfPredictedClasses[3] * 100).roundToInt()
+                }
+                binding.textviewProb4.text =
+                    "${(listOfFloatsOfPredictedClasses[3] * 100).roundToInt()}" + "%"
+                binding.textviewClasses4.text = listOfPredictedClasses[3]
+
+
+                if ((listOfFloatsOfPredictedClasses[4] * 100).roundToInt() == 0) {
+                    binding.seekBarProbs5.progress = 1
+                }else{
+                    binding.seekBarProbs5.progress =
+                        (listOfFloatsOfPredictedClasses[4] * 100).roundToInt()
+                }
+                binding.textviewProb5.text =
+                    "${(listOfFloatsOfPredictedClasses[4] * 100).roundToInt()}" + "%"
+                binding.textviewClasses5.text = listOfPredictedClasses[4]
             }
         )
     }
