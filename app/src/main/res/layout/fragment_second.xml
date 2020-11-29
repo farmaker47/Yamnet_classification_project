@@ -19,242 +19,252 @@
         tools:context=".view.ListeningFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/constraintParent">
+            android:layout_margin="4dp"
+            android:paddingBottom="24dp"
+            android:background="@drawable/light_gray_border"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textviewClasses1"
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="Class1"
-                android:textColor="#000000"
-                android:textSize="28sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textviewProb1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="12dp"
-                android:text="0%"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/seek_bar_probs1"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <SeekBar
-                android:id="@+id/seek_bar_probs1"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint1"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:max="100"
-                android:progressDrawable="@drawable/progress_drawable"
-                android:thumbTint="@android:color/transparent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textviewClasses1" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/constraint1">
-
-            <TextView
-                android:id="@+id/textviewClasses2"
-                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="Class2"
-                android:textColor="#000000"
-                android:textSize="28sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textviewProb2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="12dp"
-                android:text="0%"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/seek_bar_probs2"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/textviewClasses1"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="Class1"
+                    android:textColor="#000000"
+                    android:textSize="28sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <SeekBar
-                android:id="@+id/seek_bar_probs2"
+                <TextView
+                    android:id="@+id/textviewProb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="0%"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@id/seek_bar_probs1"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <SeekBar
+                    android:id="@+id/seek_bar_probs1"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:thumbTint="@android:color/transparent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textviewClasses1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint2"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:max="100"
-                android:progressDrawable="@drawable/progress_drawable"
-                android:thumbTint="@android:color/transparent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textviewClasses2" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/constraint2">
-
-            <TextView
-                android:id="@+id/textviewClasses3"
-                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="Class3"
-                android:textColor="#000000"
-                android:textSize="28sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/constraint1">
 
-            <TextView
-                android:id="@+id/textviewProb3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="12dp"
-                android:text="0%"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/seek_bar_probs3"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/textviewClasses2"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="Class2"
+                    android:textColor="#000000"
+                    android:textSize="28sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <SeekBar
-                android:id="@+id/seek_bar_probs3"
+                <TextView
+                    android:id="@+id/textviewProb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="0%"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@id/seek_bar_probs2"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <SeekBar
+                    android:id="@+id/seek_bar_probs2"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:thumbTint="@android:color/transparent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textviewClasses2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint3"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:max="100"
-                android:progressDrawable="@drawable/progress_drawable"
-                android:thumbTint="@android:color/transparent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textviewClasses3" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/constraint3">
-
-            <TextView
-                android:id="@+id/textviewClasses4"
-                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="Class4"
-                android:textColor="#000000"
-                android:textSize="28sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/constraint2">
 
-            <TextView
-                android:id="@+id/textviewProb4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="12dp"
-                android:text="0%"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/seek_bar_probs4"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/textviewClasses3"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="Class3"
+                    android:textColor="#000000"
+                    android:textSize="28sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <SeekBar
-                android:id="@+id/seek_bar_probs4"
+                <TextView
+                    android:id="@+id/textviewProb3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="0%"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@id/seek_bar_probs3"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <SeekBar
+                    android:id="@+id/seek_bar_probs3"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:thumbTint="@android:color/transparent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textviewClasses3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint4"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:max="100"
-                android:progressDrawable="@drawable/progress_drawable"
-                android:thumbTint="@android:color/transparent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textviewClasses4" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/constraint4">
-
-            <TextView
-                android:id="@+id/textviewClasses5"
-                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="Class5"
-                android:textColor="#000000"
-                android:textSize="28sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/constraint3">
 
-            <TextView
-                android:id="@+id/textviewProb5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="12dp"
-                android:text="0%"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/seek_bar_probs5"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/textviewClasses4"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="Class4"
+                    android:textColor="#000000"
+                    android:textSize="28sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <SeekBar
-                android:id="@+id/seek_bar_probs5"
+                <TextView
+                    android:id="@+id/textviewProb4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="0%"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@id/seek_bar_probs4"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <SeekBar
+                    android:id="@+id/seek_bar_probs4"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:thumbTint="@android:color/transparent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textviewClasses4" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint5"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:max="100"
-                android:progressDrawable="@drawable/progress_drawable"
-                android:thumbTint="@android:color/transparent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textviewClasses5" />
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/constraint4">
+
+                <TextView
+                    android:id="@+id/textviewClasses5"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="Class5"
+                    android:textColor="#000000"
+                    android:textSize="28sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textviewProb5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="0%"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@id/seek_bar_probs5"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <SeekBar
+                    android:id="@+id/seek_bar_probs5"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:thumbTint="@android:color/transparent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textviewClasses5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -262,7 +272,7 @@
         <ImageButton
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="50dp"
             android:background="@drawable/round_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -272,7 +282,7 @@
             android:id="@+id/buttonAnimated"
             android:layout_width="65dp"
             android:layout_height="70dp"
-            android:layout_marginBottom="52dp"
+            android:layout_marginBottom="62dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:foreground="@drawable/ic_microphone"
             android:text="@string/next"
@@ -284,7 +294,7 @@
             android:id="@+id/buttonForListening"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="50dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:text="@string/next"
             app:layout_constraintBottom_toBottomOf="parent"
