@@ -2,7 +2,7 @@
 
 This application uses phone's microphone to collect sound and feed it to the Yamnet model. The output is 5 top classes of sound of model's inference.
 
-YAMNet is a pretrained deep net that predicts 521 audio event classes based on
+[YAMNet](https://github.com/tensorflow/models/tree/d9541052aaf6fdc015c8150cf6576a2da68771f7/research/audioset/yamnet) is a pretrained deep net that predicts 521 audio event classes based on
 the [AudioSet-YouTube corpus](http://g.co/audioset), and employing the
 [Mobilenet_v1](https://arxiv.org/pdf/1704.04861.pdf) depthwise-separable
 convolution architecture. You can find a great example with illustrations of this architecture [here](https://medium.com/@zurister/depth-wise-convolution-and-depth-wise-separable-convolution-37346565d4ec).
