@@ -1,4 +1,4 @@
-# Yamnet_classification_project
+# Yamnet classification android application
 
 YAMNet is a pretrained deep net that predicts 521 audio event classes based on
 the [AudioSet-YouTube corpus](http://g.co/audioset), and employing the
@@ -29,5 +29,9 @@ waveform segment.  (Because of the window framing, you need at least 975 ms of
 input waveform to get the first frame of output scores.)
 
 You can use the [yamnet tflite model](https://tfhub.dev/google/lite-model/yamnet/tflite/1) and insert it inside [netron app](https://netron.app/) to view the whole architecture and especially the first part where all transformations of audio input take place.
+
+### Output: Class scores
+
+The model gives 3 outputs. Scores, emmbedings and spectograms. In this android application we focus on scores. App is tuned to collect  repeatedly 2 seconds of sound. After collection, sound is transformed to floats and is fed to the model. For this particular example we went with the interpreter implementation and with CPU delegeate (2 threads) after benchmarking the model with the [TensorFlow benchmark tool](https://www.tensorflow.org/lite/performance/measurement).
 
 <img src="Yamnet_classes.jpg" width="256" height="540">
