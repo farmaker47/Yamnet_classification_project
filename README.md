@@ -171,5 +171,7 @@ That returns a pair of classes and probabilities. All these are passes to the Ma
 
 <img src="Yamnet_classes.jpg" width="256" height="540">
 
-Link of [youtube video](https://youtu.be/y1vHM52uKDE) and blog post is coming soon.
+## Useful links
+
+[Youtube video](https://youtu.be/y1vHM52uKDE) and blog post is coming soon.
 
