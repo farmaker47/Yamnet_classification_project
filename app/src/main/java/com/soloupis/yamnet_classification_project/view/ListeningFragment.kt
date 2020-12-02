@@ -25,6 +25,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.Observer
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -64,6 +65,9 @@ class ListeningFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModelListening = viewModel
 
+        // Keep screen on
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
         lookForPermissions()
         generateFolderToSDcard()
         setUpObservers()
@@ -71,14 +75,18 @@ class ListeningFragment : Fragment() {
         binding.buttonForListening.setOnClickListener {
 
             if (viewModel.listeningRunning) {
+                // Start animation
                 listeningStopped()
+                // Change button's color
+                binding.colorButton.setBackgroundResource(R.drawable.round_button_stop)
             } else {
                 // Start animation
                 animateListeningButton()
                 // Start collecting sound and inferring immediately
                 viewModel.setUpdateLoopListeningHandler()
 
-                //Toast.makeText(activity, "Listening has started", Toast.LENGTH_LONG).show()
+                // Change button's color
+                binding.colorButton.setBackgroundResource(R.drawable.round_button_start)
 
             }
         }
@@ -121,7 +129,7 @@ class ListeningFragment : Fragment() {
                 // Show results on screen
                 if ((listOfFloatsOfPredictedClasses[0] * 100).roundToInt() == 0) {
                     binding.seekBarProbs1.progress = 1
-                }else{
+                } else {
                     binding.seekBarProbs1.progress =
                         (listOfFloatsOfPredictedClasses[0] * 100).roundToInt()
                 }
@@ -132,7 +140,7 @@ class ListeningFragment : Fragment() {
 
                 if ((listOfFloatsOfPredictedClasses[1] * 100).roundToInt() == 0) {
                     binding.seekBarProbs2.progress = 1
-                }else{
+                } else {
                     binding.seekBarProbs2.progress =
                         (listOfFloatsOfPredictedClasses[1] * 100).roundToInt()
                 }
@@ -143,7 +151,7 @@ class ListeningFragment : Fragment() {
 
                 if ((listOfFloatsOfPredictedClasses[2] * 100).roundToInt() == 0) {
                     binding.seekBarProbs3.progress = 1
-                }else{
+                } else {
                     binding.seekBarProbs3.progress =
                         (listOfFloatsOfPredictedClasses[2] * 100).roundToInt()
                 }
@@ -154,7 +162,7 @@ class ListeningFragment : Fragment() {
 
                 if ((listOfFloatsOfPredictedClasses[3] * 100).roundToInt() == 0) {
                     binding.seekBarProbs4.progress = 1
-                }else{
+                } else {
                     binding.seekBarProbs4.progress =
                         (listOfFloatsOfPredictedClasses[3] * 100).roundToInt()
                 }
@@ -165,7 +173,7 @@ class ListeningFragment : Fragment() {
 
                 if ((listOfFloatsOfPredictedClasses[4] * 100).roundToInt() == 0) {
                     binding.seekBarProbs5.progress = 1
-                }else{
+                } else {
                     binding.seekBarProbs5.progress =
                         (listOfFloatsOfPredictedClasses[4] * 100).roundToInt()
                 }
@@ -259,9 +267,19 @@ class ListeningFragment : Fragment() {
         it == PackageManager.PERMISSION_GRANTED
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+    }
 
+    override fun onPause() {
+        super.onPause()
+        if (viewModel.listeningRunning) {
+            // Start animation
+            listeningStopped()
+            // Change button's color
+            binding.colorButton.setBackgroundResource(R.drawable.round_button_stop)
+        }
     }
 
     companion object {

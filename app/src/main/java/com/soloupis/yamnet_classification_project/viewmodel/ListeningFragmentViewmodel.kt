@@ -139,16 +139,6 @@ class ListeningFragmentViewmodel(application: Application) : AndroidViewModel(ap
 
     }
 
-
-
-
-
-
-
-
-
-
-
     override fun onCleared() {
         super.onCleared()
 
