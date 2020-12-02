@@ -170,3 +170,6 @@ fun execute(floatsInput: FloatArray): Pair<ArrayList<String>, ArrayList<Float>> 
 That returns a pair of classes and probabilities. All these are passes to the MainActivity of the application that shows the results on screen
 
 <img src="Yamnet_classes.jpg" width="256" height="540">
+
+Link of [youtube video](https://youtu.be/y1vHM52uKDE) and blog post is coming soon.
+
