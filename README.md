@@ -34,7 +34,9 @@ You can use the [yamnet tflite model](https://tfhub.dev/google/lite-model/yamnet
 
 The model gives 3 outputs. Scores, emmbedings and spectograms. In this android application we focus on scores. App is tuned to collect  repeatedly 2 seconds of sound. After collection, sound is transformed to floats and is fed to the model. For this particular example we went with the interpreter implementation and with CPU delegeate (2 threads) after benchmarking the model with the [TensorFlow benchmark tool](https://www.tensorflow.org/lite/performance/measurement). We did not use GPU as this delegate is not supporting some operators that model has inside and of course because inference with CPU was really fast. For 2 seconds of sound processing time is about 100ms! You can see one of the results of the tool below
 
-<img src="benchmark.png" width="256" height="540">
+<img src="benchmark.png" width="2560" height="540">
+
+As input features are framed into 50%-overlapping examples of 0.96 seconds for 2 seconds of sound we get 4 arrays of 521 values each. Then we get the average of these arrays on 0 axis (eg average of all the arrays' values on position 0,1,2...521) and we have a sinle array of 521 values that correspond to the probabilities of the 521 classes. Taking the top 5 classes we get on screen classes and scores with order from high to low.
 
 --
 
