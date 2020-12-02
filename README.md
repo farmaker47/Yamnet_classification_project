@@ -32,6 +32,7 @@ You can use the [yamnet tflite model](https://tfhub.dev/google/lite-model/yamnet
 
 ### Output: Class scores
 
-The model gives 3 outputs. Scores, emmbedings and spectograms. In this android application we focus on scores. App is tuned to collect  repeatedly 2 seconds of sound. After collection, sound is transformed to floats and is fed to the model. For this particular example we went with the interpreter implementation and with CPU delegeate (2 threads) after benchmarking the model with the [TensorFlow benchmark tool](https://www.tensorflow.org/lite/performance/measurement).
+The model gives 3 outputs. Scores, emmbedings and spectograms. In this android application we focus on scores. App is tuned to collect  repeatedly 2 seconds of sound. After collection, sound is transformed to floats and is fed to the model. For this particular example we went with the interpreter implementation and with CPU delegeate (2 threads) after benchmarking the model with the [TensorFlow benchmark tool](https://www.tensorflow.org/lite/performance/measurement). You can see one of the results of the tool below:
+<img src="benchmark.jpg" width="256" height="540">
 
 <img src="Yamnet_classes.jpg" width="256" height="540">
