@@ -173,5 +173,5 @@ That returns a pair of classes and probabilities. All these are passes to the Ma
 
 ## Useful links
 
-[Youtube video](https://youtu.be/y1vHM52uKDE) and blog post is coming soon.
+[Youtube video](https://youtu.be/y1vHM52uKDE) and [blog post](https://farmaker47.medium.com/classification-of-sounds-using-android-mobile-phone-and-the-yamnet-ml-model-539bc199540).
 
